@@ -9,11 +9,12 @@ new Env('ddnsto自动续费免费7天的脚本');
 Description: 这是ddnsto自动续费免费7天的脚本,默认每过6天自动续费一次
 Update: 2023/9/1 更新cron
 """
+import logging
 import os
 import time
 import uuid
+
 import requests
-import logging
 
 import initialize
 
@@ -103,6 +104,7 @@ def select_list(cookie):
             )
             return status_code
     except Exception as e:
+        print(e)
         if e.args[0] == "id":
             initialize.error_message(
                 "您续期失败,这错误可能是来自于ddnsto官方的错误,因此不重复调用了"
